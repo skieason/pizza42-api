@@ -12,9 +12,9 @@ const { retryWhen } = require('rxjs');
 const app = express();
 
 if (
-  !authConfig.domain ||
-  !authConfig.audience ||
-  authConfig.audience === "YOUR_API_IDENTIFIER"
+  !process.env.DOMAIN ||
+  !process.env.AUDIENCE ||
+  process.env.AUDIENCE === "YOUR_API_IDENTIFIER"
 ) {
   console.log(
     "Exiting: Please make sure that auth_config.json is in place and populated with valid domain and audience values"
@@ -27,7 +27,7 @@ app.use(morgan('dev'));
 app.use(helmet());
 // app.use(
 //   cors({
-//     origin: authConfig.appUri,
+//     origin: process.env.appUri,
 //   })
 // );
 
@@ -42,11 +42,11 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`,
+    jwksUri: `https://${process.env.DOMAIN}/.well-known/jwks.json`,
   }),
 
-  audience: authConfig.audience,
-  issuer: `https://${authConfig.domain}/`,
+  audience: process.env.AUDIENCE,
+  issuer: `https://${process.env.DOMAIN}/`,
   algorithms: ['RS256'],
 });
 
