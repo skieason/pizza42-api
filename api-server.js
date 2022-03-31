@@ -23,11 +23,6 @@ if (
 
 app.use(morgan('dev'));
 app.use(helmet());
-// app.use(
-//   cors({
-//     origin: process.env.appUri,
-//   })
-// );
 
 app.use(cors({credentials: true, origin: '*'}) );
 app.options('*', cors({credentials: true, origin: true}));
@@ -58,9 +53,12 @@ app.get('/api/external', checkJwt, checkScopes, (req, res) => {
 
 app.post('/api/:user_id/order/', checkJwt, checkScopes, (req, res) => {
 
+  const order = req.body;
   // Complete the order after checkJwt and checkScopes (could also do the email verification check here as well)
 
-  res.send(req.body)
+  // woohoo made an order here
+  
+  res.send(order)
 
   // Could send request to Management API here but I chose to do it in frontend
 
