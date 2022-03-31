@@ -59,27 +59,32 @@ app.get('/api/external', checkJwt, checkScopes, (req, res) => {
 });
 
 app.post('/api/:user_id/order/', checkJwt, checkScopes, (req, res) => {
-  var axios = require("axios").default;
 
-  var options = {
-    method: 'PATCH',
-    url: 'https://dev-49fsv0cc.us.auth0.com/api/v2/users/' + req.params.user_id,
-    headers: { authorization: req.headers.authorization, 'content-type': 'application/json' },
-    data: {
-      user_metadata: { orders: req.body },
-    }
-  };
+  // Complete the order after checkJwt and checkScopes (could also do the email verification check here as well)
 
-  axios.request(options).then(function (response) {
-    res.send('Success');
+  res.send(req.body)
 
-  }).catch(function (error) {
-    console.error(error);
-  });
+  // Could send request to Management API here but I chose to do it in frontend
+
+  // var axios = require("axios").default;
+
+  // var options = {
+  //   method: 'PATCH',
+  //   url: 'https://dev-49fsv0cc.us.auth0.com/api/v2/users/' + req.params.user_id,
+  //   headers: { authorization: req.headers.authorization, 'content-type': 'application/json' },
+  //   data: {
+  //     user_metadata: { orders: req.body },
+  //   }
+  // };
+
+  // axios.request(options).then(function (response) {
+  //   res.send('Success');
+
+  // }).catch(function (error) {
+  //   console.error(error);
+  // });
 
 });
-
-// const port = process.env.API_SERVER_PORT || 3001;
 
 app.listen(process.env.PORT || 3001, () => console.log(`Api started...`));
 
