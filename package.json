@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "start": "npm run prod",
+    "server:api": "node api-server.js",
+    "prod": "npm run server:api"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "express-jwt": "^6.1.1",
+    "express-jwt-authz": "^2.4.1",
+    "helmet": "^5.0.2",
+    "jwks-rsa": "^2.0.5",
+    "morgan": "^1.10.0",
+    "rxjs": "^7.5.5"
+  }
+}
