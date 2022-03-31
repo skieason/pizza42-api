@@ -5,8 +5,6 @@ const cors = require('cors');
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 const jwtAuthz = require('express-jwt-authz');
-
-const authConfig = require('./auth_config.json');
 const { retryWhen } = require('rxjs');
 
 const app = express();
