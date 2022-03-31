@@ -25,11 +25,15 @@ if (
 
 app.use(morgan('dev'));
 app.use(helmet());
-app.use(
-  cors({
-    origin: authConfig.appUri,
-  })
-);
+// app.use(
+//   cors({
+//     origin: authConfig.appUri,
+//   })
+// );
+
+app.use(cors({credentials: true, origin: '*'}) );
+app.options('*', cors({credentials: true, origin: true}));
+
 app.use(express.json());
 app.use(express.urlencoded());
 
