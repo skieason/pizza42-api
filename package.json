@@ -5,6 +5,7 @@
     "prod": "npm run server:api"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "express-jwt": "^6.1.1",
@@ -15,4 +16,3 @@
     "rxjs": "^7.5.5"
   }
 }
-
